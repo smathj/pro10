@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class TestServlet3
  */
-/*@WebServlet("*.do")*/
-/*@WebServlet("/*")*/
+/* @WebServlet("*.do") */
+/* @WebServlet("/*") */
 public class TestServlet3 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -22,22 +22,26 @@ public class TestServlet3 extends HttpServlet {
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
+		
 		PrintWriter out = response.getWriter();
-		String context = request.getContextPath();
-		String url = request.getRequestURL().toString();
-		String mapping = request.getServletPath();
-		String uri = request.getRequestURI();
+		// 다음은 디버깅으로 충분히 확인하자
+		String context = request.getContextPath();			// 컨텍스트 이름만 가져온다!, 			/pro10
+		String url = request.getRequestURL().toString();	// 전체 URL을 가져온다!				http://localhost:8080/pro10/first/test
+		String mapping = request.getServletPath();			// 서블릿 매핑 이름만 가져온다!		/first/test
+		String uri = request.getRequestURI();				// URI를 가져온다					/pro10/first/test
+		
 		out.println("<html>");
 		out.println("<head>");
 		out.println("<title>Test Servlet3</title>");
 		out.println("</head>");
 		out.println("<body bgcolor='red'>");
-		out.println("<b>TestServlet3�Դϴ�.</b><br>");
-		out.println("<b>���ؽ�Ʈ�� : "+ context + "</b><br>");
-		out.println("<b>��ü��� : "+ url +"<b><br>");
-		out.println("<b>���θ� : "+mapping+"<b><br>");
+		out.println("<b>TestServlet3입니다.</b><br>");
+		out.println("<b>컨텍스트 이름 : "+ context + "</b><br>");
+		out.println("<b>전체 경로 : "+ url +"<b><br>");
+		out.println("<b>매핑 이름 : "+mapping+"<b><br>");
 		out.println("<b>URI : " + uri + "<b>");	
 		out.println("</body>");
 		out.println("</html>");

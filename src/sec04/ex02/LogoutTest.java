@@ -29,20 +29,27 @@ public class LogoutTest extends HttpServlet {
 	}
 
 	private void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		context = getServletContext();
 		PrintWriter out = response.getWriter();
+		
+		context = getServletContext();
+
 		HttpSession session = request.getSession();
+		
 		String user_id = request.getParameter("user_id");
 
 		session.invalidate();
 
 		List user_list = (ArrayList) context.getAttribute("user_list");
+		
 		user_list.remove(user_id);
 		context.removeAttribute("user_list");
+		
 		context.setAttribute("user_list", user_list);
-		out.println("<br>�α׾ƿ� �߽��ϴ�.");
+		
+		out.println("<br>로그아웃했습니다.");
 	}
 
 }

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class LoginTest
  */
-/*@WebServlet("/login")*/
+//@WebServlet("/login")
 public class LoginTest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -22,9 +22,12 @@ public class LoginTest extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
+		
 		PrintWriter out = response.getWriter();
+		
 		HttpSession session = request.getSession();
 
 		String user_id = request.getParameter("user_id");
@@ -41,8 +44,8 @@ public class LoginTest extends HttpServlet {
 		out.println("</script>");
 		out.println("</head>");
 		out.println("<html><body>");
-		out.println("¾ÆÀÌµğ´Â " + loginUser.user_id + "<br>");
-		out.println("ÃÑ Á¢¼ÓÀÚ¼ö´Â" + LoginImpl.total_user + "<br>");
+		out.println("ì•„ì´ë””ëŠ” " + loginUser.user_id + "<br>");
+		out.println("ì´ ì ‘ì†ììˆ˜ëŠ”" + LoginImpl.total_user + "<br>");
 		out.println("</body></html>");
 
 	}

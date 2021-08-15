@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class SetAttribute
  */
-/*@WebServlet("/set")*/
+@WebServlet("/set")
 public class SetAttribute extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -23,18 +23,24 @@ public class SetAttribute extends HttpServlet {
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.setContentType("text/html;charset=utf-8");
-		PrintWriter out = response.getWriter();
-		String ctxMesg = "context�� ���ε��˴ϴ�.";
-		String sesMesg = "session�� ���ε��˴ϴ�.";
-		String reqMesg = "request�� ���ε��˴ϴ�.";
+		
+		response.setContentType("text/html;charset=utf-8");	// 브라우저에게 컨텐츠타입 알림
+		PrintWriter out = response.getWriter();				// 출력 스트림
+		
+		String ctxMesg = "context에 바인딩됩니다.";
+		String sesMesg = "session에 바인딩됩니다.";
+		String reqMesg = "request에 바인딩됩니다.";
 
-		ServletContext ctx = getServletContext();
-		HttpSession session = request.getSession();
-		ctx.setAttribute("context", ctxMesg);
-		session.setAttribute("session", sesMesg);
-		request.setAttribute("request", reqMesg);
-		out.print("���ε��� �����մϴ�.");
+		ServletContext ctx = getServletContext();			//ServletContext 객체 얻기
+		HttpSession session = request.getSession();			//Session 객체 얻기
+		
+		
+		ctx.setAttribute("context", ctxMesg);				// 애플리 케이션 스코프
+		session.setAttribute("session", sesMesg);			// 세션 스코프
+		request.setAttribute("request", reqMesg);			// 리퀘스트 스코프
+		
+		
+		out.print("바인딩을 수행합니다.");
 
 	}
 

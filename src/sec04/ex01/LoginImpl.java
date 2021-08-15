@@ -4,8 +4,12 @@ import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionBindingListener;
 
 public class LoginImpl implements HttpSessionBindingListener {
+	
+	// ë¡œê·¸ì¸ ì‚¬ìš©ì ì ‘ì†ììˆ˜ë¥¼ êµ¬í•˜ê¸°ìœ„í•œ ë¦¬ìŠ¤ë„ˆ
+	
 	String user_id;
 	String user_pw;
+	
 	static int total_user = 0;
 
 	public LoginImpl() {
@@ -18,13 +22,13 @@ public class LoginImpl implements HttpSessionBindingListener {
 
 	@Override
 	public void valueBound(HttpSessionBindingEvent arg0) {
-		System.out.println("»ç¿ëÀÚ Á¢¼Ó");
-		++total_user;
+		System.out.println("ì‚¬ìš©ì ì ‘ì†");
+		++total_user;	// +1
 	}
 
 	@Override
 	public void valueUnbound(HttpSessionBindingEvent arg0) {
-		System.out.println("»ç¿ëÀÚ Á¢¼Ó ÇØÁ¦");
-		total_user--;
+		System.out.println("ì‚¬ìš©ì ì ‘ì† í•´ì œ");
+		total_user--;	// -1
 	}
 }

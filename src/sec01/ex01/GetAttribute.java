@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class GetAttribute
  */
-/*@WebServlet("/get")*/
+@WebServlet("/get")
 public class GetAttribute extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -24,18 +24,20 @@ public class GetAttribute extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
+		
 		ServletContext ctx = getServletContext();
 		HttpSession sess = request.getSession();
 
-		String ctxMesg = (String) ctx.getAttribute("context");
-		String sesMesg = (String) sess.getAttribute("session");
-		String reqMesg = (String) request.getAttribute("request");
+		String ctxMesg = (String) ctx.getAttribute("context");		// 애플리 케이션 스코프에 있는 데이터를 꺼낸다
+		String sesMesg = (String) sess.getAttribute("session");		// 세션 스코프에 있는 데이터를 꺼낸다
+		String reqMesg = (String) request.getAttribute("request");	// 리퀘스트 스코프에 있는 데이터를 꺼낸다
 
-		out.print("context�� : " + ctxMesg + "<br>");
-		out.print("session�� : " + sesMesg + "<br>");
-		out.print("request�� : " + reqMesg + "<br>");
+		out.print("context값 : " + ctxMesg + "<br>");
+		out.print("session값 : " + sesMesg + "<br>");
+		out.print("request값 : " + reqMesg + "<br>");
 
 	}
 

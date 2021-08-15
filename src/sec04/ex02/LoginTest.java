@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class LoginTest
  */
-/*@WebServlet("/login")*/
+//@WebServlet("/login")
 public class LoginTest extends HttpServlet {
 	ServletContext context = null;
 	List user_list = new ArrayList();
@@ -27,14 +27,21 @@ public class LoginTest extends HttpServlet {
 	 *      response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf-8");
-		context = getServletContext();
 		PrintWriter out = response.getWriter();
+		
+		context = getServletContext();
+		
 		HttpSession session = request.getSession();
+		
 		String user_id = request.getParameter("user_id");
 		String user_pw = request.getParameter("user_pw");
+		
 		LoginImpl loginUser = new LoginImpl(user_id, user_pw);
+		
+		// ìƒˆë¡œìš´ ì„¸ì…˜ì„ ìƒì„±í–ˆì„ë•Œ
 		if (session.isNew()) {
 			session.setAttribute("loginUser", loginUser);
 			user_list.add(user_id);
@@ -42,14 +49,14 @@ public class LoginTest extends HttpServlet {
 		}
 
 		out.println("<html><body>");
-		out.println("¾ÆÀÌµğ´Â " + loginUser.user_id + "<br>");
-		out.println("ÃÑ Á¢¼ÓÀÚ¼ö´Â" + LoginImpl.total_user + "<br><br>");
-		out.println("Á¢¼Ó ¾ÆÀÌµğ:<br>");
+		out.println("ì•„ì´ë””ëŠ”  " + loginUser.user_id + "<br>");
+		out.println("ì´ ì ‘ì†ì ìˆ˜ëŠ” " + LoginImpl.total_user + "<br><br>");
+		out.println("ì ‘ì† ì•„ì´ë””:<br>");
 		List list = (ArrayList) context.getAttribute("user_list");
 		for (int i = 0; i < list.size(); i++) {
 			out.println(list.get(i) + "<br>");
 		}
-		out.println("<a href='logout?user_id=" + user_id + "'>·Î±×¾Æ¿ô </a>");
+		out.println("<a href='logout?user_id=" + user_id + "'>ë¡œê·¸ì•„ì›ƒ </a>");
 		out.println("</body></html>");
 	}
 
